@@ -1,0 +1,16 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('maxmedia.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('maxmedia.partials.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+<?php echo $__env->make('maxmedia.partials.carrousel', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('maxmedia.partials.max', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('maxmedia.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('maxmedia.partials.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<?php echo $__env->make('maxmedia.partials.notify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('maxmedia.template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

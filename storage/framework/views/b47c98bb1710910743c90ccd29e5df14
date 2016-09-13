@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>Nombre:</strong> <?php echo $name; ?></div>
+    <div class="panel-body">
+        <strong>
+            Correo:
+        </strong>
+        <?php echo Auth::user()->email; ?>
+
+        <br/>
+        <strong>
+            Mensaje:
+        </strong>
+        <?php echo $mensaje; ?>
+
+    </div>
+</div>
+
+</body>
+</html>

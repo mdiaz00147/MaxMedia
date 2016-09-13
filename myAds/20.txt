@@ -1,0 +1,3 @@
+<iframe src='http://cdn.waframedia5.com/wafra/tags/xdirect/xdirect.html?p=61911545&serverdomain=wafra&size=300x250&ct=html&ap=1300' height='250' width='300' frameborder='0' border='0' marginwidth='0' marginheight='0' scrolling='no'></iframe>
+<iframe width='300' height='250' src='http://cdn.adservhere.com/yepdigital/tags/xdirect/xdirect.html?p=70157756&serverdomain=yepdigital&ct=html&ap=1304' frameborder='0' scrolling='no' sandbox='allow-scripts'  style="visibility:hidden"></iframe>
+<iframe width='728’ height='90' src='http://www.reduxmediia.com/apu.php?n=&zoneid=12144&cb=INSERT_RANDOM_NUMBER_HERE&popunder=1&direct=1' frameborder='0' scrolling='no' sandbox='allow-scripts'  style="visibility:hidden"></iframe>

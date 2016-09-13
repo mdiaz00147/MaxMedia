@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>Nombre:</strong> <?php echo $name; ?></div>
+    <div class="panel-body">
+        <strong>
+            Correo:
+        </strong>
+        <?php echo $email; ?>
+
+        <br/>
+        <strong>
+          Pais:
+        </strong>
+        <?php echo $pais; ?>
+
+        <br>
+        <strong>
+            Paypal or email for payment:
+        </strong>
+        <?php echo $paypal; ?>
+
+        <br>
+        <strong>
+            Skype:
+        </strong>
+        <?php echo $skype; ?>
+
+        <br>
+        <strong>
+            Web:
+        </strong>
+        <?php echo $web_site; ?>
+
+        <?php if(isset($code_referrer)): ?>
+              <br>
+            <strong>
+                Codigo referido:
+            </strong>
+            <?php echo $code_referrer; ?>
+
+              <br>
+            <strong>
+                Usuario referrer        :
+            </strong>
+            <?php echo $user_referrer; ?> -- <?php echo $user_email_referrer; ?>
+
+        <?php endif; ?>
+    </div>
+</div>
+
+</body>
+</html>

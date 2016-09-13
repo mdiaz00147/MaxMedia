@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>Nombre:</strong> <?php echo Auth::user()->nombre; ?></div>
+    <div class="panel-body">
+        Cantidad:
+        </strong>
+        <?php echo $cantidad; ?>
+
+
+        <br/>
+        <strong>
+            Correo:
+        </strong>
+        <?php echo Auth::user()->email; ?>
+
+        <br/>
+        <strong>
+            Nombre:
+        </strong>
+        <?php echo Auth::user()->nombre; ?>
+
+        <?php echo Auth::user()->apellido; ?>
+
+        <br/>
+        Paypal Email:
+        </strong>
+        <?php echo Auth::user()->paypal_email; ?>
+
+        <?php echo Auth::user()->paypal_name; ?>
+
+        <br/>
+        <strong>
+            Email que puso para solicitar pago:
+        </strong>
+        <?php echo $email; ?>
+
+    </div>
+</div>
+
+</body>
+</html>

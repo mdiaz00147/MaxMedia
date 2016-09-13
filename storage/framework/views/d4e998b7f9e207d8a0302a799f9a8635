@@ -1,0 +1,146 @@
+
+<?php $__env->startSection('content'); ?>
+    <link href="<?php echo e(asset('/css/sweetalert.css')); ?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <?php echo $__env->make('admin.partials.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="subnavbar">
+        <div class="subnavbar-inner">
+            <div class="container">
+                <ul class="mainnav">
+                    <li><a href="<?php echo e(url('referrer/home')); ?>"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+                    <li ><a href="<?php echo e(url('referrer/report')); ?>"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+                    <li class="active"><a href="<?php echo e(url('referrer/placements')); ?>"><i class="icon-money"></i><span>All Placements</span> </a></li>
+                    <li><a href="<?php echo e(url('referrer/referrers')); ?>"><i class="icon-user-md"></i><span>All referrers</span> </a> </li>
+                    <li><a href="<?php echo e(route('refererr.report.referrer')); ?>"><i class="icon-bar-chart"></i><span>Statics</span> </a> </li>
+                    <li><a href="<?php echo e(url('referrer/account')); ?>"><i class="icon-user"></i><span>Account</span> </a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php echo $__env->make('admin.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="main" style="border-bottom: 0px !important;">
+        <div class="main-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="widget">
+                            <div class="widget-content">
+                                <br>
+                                <table id="example" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name Ad </th>
+                                        <th>User Name</th>
+                                        <th>User Email</th>
+                                        <th>Web</th>
+                                        <th>Script</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($placements as $p): ?>
+                                        <tr>
+                                            <td><?php echo e($p->id_ad); ?></td>
+                                            <td><?php echo e($p->n_ad); ?></td>
+                                            <td><?php echo e($p->nombre); ?><?php echo e($p->apellido); ?></td>
+                                            <td><?php echo e($p->email); ?></td>
+                                            <td><?php echo e($p->url_web); ?></td>
+                                            <td>
+                                                <a
+                                                        href="#"
+                                                        class="btn btn-primary btn-detalle-pedido"
+                                                        data-path=""
+                                                        data-toggle="modal"
+                                                        data-target="#myModal"
+                                                        data-id="<?php echo e($p->id_ad); ?>"
+                                                        data-token="<?php echo e(csrf_token()); ?>"
+                                                        >
+                                                    <i class="icon-code"></i>
+                                                </a>
+                                           </td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php echo $__env->make('admin.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('admin.partials.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <?php echo $__env->make('admin.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(asset('js/sweetalert.min.js')); ?>"></script>
+    <?php echo $__env->make('maxmedia.partials.notify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $('#example').DataTable({
+                "scrollY":"400px",
+                "scrollCollapse":true,
+                "paging":true
+            });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".btn-detalle-pedido").on('click', function(e){
+                e.preventDefault();
+                var id_pedido = $(this).data('id');
+                var url = BASEURL + "client/placement-code"
+                var token = $(this).data('token');
+                var modal_title = $(".modal-title");
+                var modal_body = $(".modal-body");
+                var insert = $(".modal-body textarea")
+                var loading = '<p><i class="icon-remove-circle icon-spin"></i></p>';
+                var data = {'_token' : token, 'id_ad' : id_pedido};
+                modal_title.html('Script');
+                modal_body.html(loading);
+                $.post(
+                        url,
+                        data,
+                        function(data){
+                            modal_body.text(data.script);
+                        },
+                        'json'
+                );
+
+            });
+        });
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.tempalte-2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

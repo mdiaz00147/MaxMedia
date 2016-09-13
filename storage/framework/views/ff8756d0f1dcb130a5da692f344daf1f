@@ -1,0 +1,122 @@
+
+<?php $__env->startSection('content'); ?>
+
+<link href="<?php echo e(asset('/css/sweetalert.css')); ?>" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<?php echo $__env->make('admin.partials.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('admin.partials.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="subnavbar">
+    <div class="subnavbar-inner">
+        <div class="container">
+            <ul class="mainnav">
+                <li class=""><a href="<?php echo e(url('admin/home')); ?>"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+                <li><a href="<?php echo e(url('admin/report')); ?>"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+                <li ><a href="<?php echo e(route('admin.payment.index')); ?>"><i class="icon-money"></i><span>Payments</span> </a></li>
+                <li class="active"><a href="<?php echo e(route('placement')); ?>"><i class="icon-bar-chart"></i><span>Placements</span> </a> </li>
+          <li ><a href="<?php echo e(route('admin.referrer.index')); ?>"><i class="icon-user-md"></i><span>Referrers</span> </a> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php echo $__env->make('admin.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container text-center">
+
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-user"></i> Ads <small>[ Add ad ]</small>
+        </h1>
+    </div>
+
+    <div class="container">
+
+    </div>
+    <div class="page">
+        <center>
+
+            <?php echo Form::open(['route'=>'admin.ad.store']); ?>
+
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+
+                <?php echo Form::text(
+                'nombre',
+                null,
+                array(
+                'class'=>'form-control',
+
+                'autofocus' => 'autofocus',
+                'required' => 'required'
+                )
+                ); ?>
+
+            </div>
+
+            <div class="form-group">
+                <label for="user">Type:</label>
+
+                <?php echo Form::text(
+                'tipo',
+                null,
+                array(
+                'class'=>'form-control',
+
+                'required' => 'required'
+                )
+                ); ?>
+
+            </div>
+
+            <div class="form-group">
+                <label for="address">Script:</label>
+
+                <?php echo Form::textarea(
+                'script',
+                null,
+                array(
+                'class'=>'form-control',
+                'required' => 'required'
+
+                )
+                ); ?>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="address">Description:</label>
+
+                <?php echo Form::textarea(
+                'descripcion',
+                null,
+                array(
+                'class'=>'form-control'
+                )
+                ); ?>
+
+            </div>
+
+
+            <div class="form-group">
+                <?php echo Form::submit('Save', array('class'=>'btn btn-primary')); ?>
+
+                <a href="<?php echo e(route('admin.user.index')); ?>" class="btn btn-warning">Cancel</a>
+            </div>
+
+            <?php echo Form::close(); ?>
+
+        </center>
+
+    </div>
+
+</div>
+<?php echo $__env->make('admin.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('maxmedia.partials.notify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script type="text/javascript" src="<?php echo e(asset('js/admin/admin-report.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.tempalte-2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

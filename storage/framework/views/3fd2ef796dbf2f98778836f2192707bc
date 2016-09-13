@@ -1,0 +1,130 @@
+
+<?php $__env->startSection('content'); ?>
+    <link href="<?php echo e(asset('/css/sweetalert.css')); ?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('/css/admin/jquery.dataTables.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('/css/admin/buttons.dataTables.min.css')); ?>">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <?php echo $__env->make('admin.partials.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('admin.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('admin.partials.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="subnavbar">
+        <div class="subnavbar-inner">
+            <div class="container">
+                <ul class="mainnav">
+                    <li ><a href="<?php echo e(url('referrer/home')); ?>"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+                    <li ><a href="<?php echo e(url('referrer/report')); ?>"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+                    <li><a href="<?php echo e(url('referrer/placements')); ?>"><i class="icon-money"></i><span>All Placements</span> </a></li>
+                    <li class="active"><a href="<?php echo e(url('referrer/referrers')); ?>"><i class="icon-user-md"></i><span>All referrers</span> </a> </li>
+                    <li><a href="<?php echo e(route('refererr.report.referrer')); ?>"><i class="icon-bar-chart"></i><span>Statics</span> </a> </li>
+                    <li><a href="<?php echo e(url('referrer/account')); ?>"><i class="icon-user"></i><span>Account</span> </a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main-inner">
+            <div class="container">
+                <br>
+                <div class="row">
+                    <div class="span12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <i class="icon-money"></i>
+                                <h3>Placements</h3>
+                            </div>
+                            <div class="widget-content">
+                                <a href="<?php echo e(route('referrer.ad.create')); ?>" class="btn btn-success btn-lg" style="width: 150px;">
+                                    <span class="icon-plus"></span>
+                                    Add Placement
+                                </a>
+                                <br><br>
+                                <table id="gest_admin" class="display" cellspacing="0" style="width: auto;">
+                                    <thead>
+                                    <tr>
+                                        <th>Edit</th>
+                                        <th>ID</th>
+                                        <th>User Name</th>
+                                        <th>Placement Name</th>
+                                        <th>AD name</th>
+                                        <th>Site</th>
+                                        <th>Script</th>
+                                        <th>User mail</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <?php foreach($ads as $ad): ?>
+                                        <tr>
+                                            <td>
+                                                <a href="<?php echo e(route('referrer.ad.edit', $ad->id_ad)); ?>" class="btn btn-primary">
+                                                    <span class="icon-edit" aria-hidden="true"></span>
+                                                </a>
+                                            </td>
+                                            <td><?php echo e($ad->id_ad); ?></td>
+                                            <td><?php echo e($ad->n_nombre); ?> <?php echo e($ad->n_apellido); ?></td>
+                                            <td class="compact"><?php echo e($ad->n); ?></td>
+                                            <td><?php echo e($ad->n_ad); ?></td>
+                                            <td class="compact"><input style="max-width:150px;" type="text" readonly value="<?php echo e($ad->url); ?>"/></td>
+                                            <td><input type="text" readonly value="<?php echo e($ad->s); ?>"/></td>
+                                            <td><?php echo e($ad->email); ?></td>
+                                        </tr>
+                                        <?php echo $__env->make('admin.partials.modal-changePlacement', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="_token" id="_token" value="<?php echo e(csrf_token()); ?>">
+
+        </div>
+        <!-- /container -->
+    </div>
+
+    <?php echo $__env->make('admin.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(asset('js/sweetalert.min.js')); ?>"></script>
+    <?php echo $__env->make('maxmedia.partials.notify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <script type="text/javascript" src="<?php echo e(asset('js/admin/admin-report.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin/dataTables.buttons.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin/buttons.html5.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin/jszip.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin/pdfmake.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin/vfs_fonts.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin/buttons.print.min.js')); ?>"></script>
+    <script type="text/javascript">
+        $(document).ready(function($){
+            $('#gest_admin').DataTable({
+
+                ordering: true,
+                searching: true,
+                dom: 'Bftrip',
+                buttons:[
+                    'excelHtml5',
+                    'pdfHtml5',
+                    {
+                        extend: 'print',
+                        customize: function(win){
+                            $(win.document.body)
+                                    .css('font-size', '10pt')
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit')
+
+                        },
+                    },
+                ]
+
+
+            });
+        });
+
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.tempalte-2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,284 @@
+
+<?php $__env->startSection('content'); ?>
+<link href="<?php echo e(asset('/css/sweetalert.css')); ?>" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<?php echo $__env->make('admin.partials.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="subnavbar">
+    <div class="subnavbar-inner">
+        <div class="container">
+            <ul class="mainnav">
+                <li class=""><a href="<?php echo e(url('client/home')); ?>"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+                <li><a href="<?php echo e(url('client/report')); ?>"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+                <li class="active"><a href="<?php echo e(route('client.payment.index')); ?>"><i class="icon-money"></i><span>Payments</span> </a></li>
+                <li><a href="<?php echo e(url('client/placement')); ?>"><i class="icon-bar-chart"></i><span>Placements</span> </a> </li>
+                <li><a href="<?php echo e(url('client/account')); ?>"><i class="icon-user"></i><span>Account</span> </a> </li>
+                <li><a href=""> </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php echo $__env->make('admin.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="main">
+    <div class="main-inner">
+        <div class="container">
+            <div class="row">
+                
+
+                <div class="span3">
+
+                <?php foreach($revenue as $r): ?>
+                    <?php foreach($solicitudes as $re): ?>                
+                        <?php foreach($payments as $payment): ?> 
+                            <?php echo $__env->make('client.partials.modal-monay', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            <?php if( (($r->reve - $re->c ) - $payment->b >= 10)): ?>
+                            <div class="widget widget-nopad">
+                            <div class="widget-header"> <i class="icon-list-alt"></i>
+                            <h3> Request payment </h3>
+                            </div>
+                               
+                            
+                            <div class="widget-content">
+                            <div class="widget big-stats-container">
+                                <div class="widget-content">
+                                    <div id="big_stats">
+                                        <div class="stat"><button type="button" class="btn btn-success btn-block btn-lg" style="width: 80%;" data-target="#Mymodal" data-toggle="modal">Withdraw</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+
+                            <?php else: ?>
+
+                            <div class="widget widget-nopad">
+                            <div class="widget-header"> <i class="icon-list-alt"></i>
+                            <h3> Request payment</h3>
+                            </div>
+                               
+                    
+                            <div class="widget-content">
+                            <div class="widget big-stats-container">
+                                <div class="widget-content">
+                                    <div id="big_stats">
+                                    <center>
+                                        <button type="button" class="btn btn-warning" style="width: 230px;">You dont have enough money</button>
+                                    </center>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                    <div class="widget widget-nopad">
+                        <div class="widget-header"> <i class="icon-list-alt"></i>
+                            <h3> Pending payments</h3>
+                        </div>
+                        <!-- /widget-header -->
+                        <div class="widget-content">
+                            <div class="widget big-stats-container">
+                                <div class="widget-content">
+                                    <div id="big_stats">
+                                        <div class="stat"> <i class="icon-money"></i> <span class="value"><?php foreach($solicitudes as $r): ?> <?php if($r->c <= 0 ): ?> 0 <?php else: ?><?php echo e($r->c); ?><?php endif; ?> <?php endforeach; ?></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget widget-nopad">
+                        <div class="widget-header"> <i class="icon-list-alt"></i>
+                            <h3> Total paid</h3>
+                        </div>
+                        <!-- /widget-header -->
+                        <div class="widget-content">
+                            <div class="widget big-stats-container">
+                                <div class="widget-content">
+                                    <div id="big_stats">
+                                        <div class="stat"> <i class="icon-money"></i> <span class="value"><?php foreach($revenue_total as $r): ?> <?php if($r->r <= 0 ): ?> 0 <?php else: ?><?php echo e($r->r); ?><?php endif; ?> <?php endforeach; ?></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+                </div>
+                <div class="span5">
+                    <div class="widget widget-nopad">
+                        <div class="widget-header"> <i class="icon-bar-chart"></i>
+                            <h3>Payment Trend</h3>
+                        </div>
+                        <!-- /widget-header -->
+                        <div class="widget-content">
+                            <div class="widget big-stats-container">
+                                <div class="widget-content">
+                                    <div id="big_stats">
+                                        <div id="container" style="min-width: 310px; height: 300 px; max-width: 600px; margin: 0 auto;position:relative;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="span4">
+                    <div class="widget widget-nopad">
+                        <div class="widget-header"> <i class="icon-thumbs-up"></i>
+                            <h3> Tip</h3>
+                        </div>
+                        <!-- /widget-header -->
+                        <div class="widget-content">
+                            <ul class="news-items">
+                                <li>
+
+                                    <div class="news-item-date"> <span class="news-item-day">29</span> <span class="news-item-month">Aug</span> </div>
+                                    <div class="news-item-detail"> <a href="http://www.egrappler.com/thursday-roundup-40/" class="news-item-title" target="_blank">Thursday Roundup # 40</a>
+                                        <p class="news-item-preview"> This is our web design and development news series where we share our favorite design/development related articles, resources, tutorials and awesome freebies. </p>
+                                    </div>
+
+                                </li>
+                                <li>
+
+                                    <div class="news-item-date"> <span class="news-item-day">15</span> <span class="news-item-month">Jun</span> </div>
+                                    <div class="news-item-detail"> <a href="http://www.egrappler.com/retina-ready-responsive-app-landing-page-website-template-app-landing/" class="news-item-title" target="_blank">Retina Ready Responsive App Landing Page Website Template – App Landing</a>
+                                        <p class="news-item-preview"> App Landing is a retina ready responsive app landing page website template perfect for software and application developers and small business owners looking to promote their iPhone, iPad, Android Apps and software products.</p>
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <div class="widget">
+                        <div class=" widget-header">
+                            <i class="icon-table"></i>
+                            <h3>Top Payments</h3>
+                        </div>
+                        <div class="widget-content">
+                            <table id="t_payments" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Paypal</th>
+                                    <th>Transaction ID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach($payments_table as $payment): ?>
+                                <tr <?php if($payment->paid == 1): ?> class="info" <?php endif; ?>>
+                                <td></td>
+                                <td align="center"><?php echo date('M-d',strtotime($payment->created_at)); ?>"</td>
+                                <td align="center">$<?php echo e($payment->paid); ?> USD</td>
+                                <td align="center"><?php echo e($payment->email); ?></td>
+                                <td align="center"><?php echo e($payment->paypal_id_transaction); ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<?php echo $__env->make('admin.partials.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.partials.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('maxmedia.partials.notify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo e(asset('js/sweetalert.min.js')); ?>"></script>
+
+<script type="text/javascript">
+    $(document).ready(function($) {
+        $('#t_payments').DataTable({
+            language: {
+                "lengthMenu":"Payments_MENU_",
+                "zeroRecords":"There are not Payments",
+                "info": "List Payments _PAGE_ of _PAGE_",
+                "infoEmpty": "There are not Payments",
+                "infoFiltered": "(filtered from _MAX_ total records",
+                "search": "Search",
+                "paginate":{
+                    "first":"First",
+                    "last": "Last",
+                    "next": "Next",
+                    "previous": "Previous"
+                }
+
+            }
+
+        });
+    });
+</script>
+<script>
+    $(function () {
+            $('#container').highcharts({
+                title: {
+                    text: 'Maxmedia Report',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'LAST 8 DAYS',
+                    x: -20
+                },
+                xAxis: {
+
+                    categories:[  <?php foreach($payments as $payment): ?>
+            " <?php echo date('M-d',strtotime($payment->created_at)); ?>"
+                ,<?php endforeach; ?>]
+        },
+        yAxis: {
+        title: {
+            text: ''
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    },
+    tooltip: {
+        valueSuffix: ''
+    },
+    legend: {
+        layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+    },
+    series: [{
+        name: 'Balance',
+        data: [
+    <?php foreach($payments as $payment): ?>
+    <?php echo $payment->b; ?>
+
+    ,<?php endforeach; ?>]
+    }]
+    });
+    });
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.tempalte-2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,14 @@
+<?php if(notify()->ready()): ?>
+<script>
+    swal({
+        title: "<?php echo notify()->message(); ?>",
+        text:  "<?php echo notify()->option('text'); ?>",
+        type:  "<?php echo notify()->type(); ?>",
+    <?php if(notify()->option('timer')): ?>
+        timer: <?php echo e(notify()->option('timer')); ?>,
+    showConfirmButton: false
+    <?php endif; ?>
+    });
+
+</script>
+<?php endif; ?>

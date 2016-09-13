@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="modalStatics" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Date to date</h4>
+      </div>
+      <div class="modal-body">
+          {!! Form::open(['url' => 'admin/statics/user' , 'method' => 'POST' ])  !!}
+            <input type="submit" class="btn btn-primary" value="search">
+          {!! Form::close()  !!}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
