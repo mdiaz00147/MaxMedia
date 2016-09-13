@@ -1,4 +1,22 @@
+<<<<<<< HEAD
 /vendor
 /node_modules
 .env
 _ide_helper.php
+=======
+vendor/
+node_modules/
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+bootstrap/cache/
+.env.*.php
+.env.php
+.env
+
+# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
+.rocketeer/
+>>>>>>> ec5ee1661e6f2db8318349e4bed6dd172bb69dba
